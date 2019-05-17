@@ -1,4 +1,5 @@
 import React from "react";
+import "./News.css";
 
 class News extends React.Component {
   constructor(props) {
@@ -26,9 +27,14 @@ class News extends React.Component {
   render() {
     let { news, isLoading } = this.state;
     let arr = news.map(item => {
-      return <h3>${item}</h3>;
+      return <div>{item}</div>;
     });
-    return <div>{isLoading ? <Loading /> : arr}</div>;
+    return (
+      <div className="news">
+        <h2>News</h2>
+        {isLoading ? <Loading /> : arr}
+      </div>
+    );
   }
 }
 

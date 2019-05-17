@@ -68,7 +68,7 @@ class App extends React.Component {
             value={{ loggedIn, logIn, logOut, username, setUsername }}
           >
             <Navigation />
-            <div>
+            <div className="App__content">
               <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/news" component={News} />
