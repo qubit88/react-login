@@ -1,5 +1,6 @@
 import React from "react";
 import "./Login.css";
+import LoginContext from "./LoginContext";
 
 class Login extends React.Component {
   constructor(props) {
@@ -13,8 +14,17 @@ class Login extends React.Component {
     const value = event.target.value;
     this.setState({ [name]: value });
   }
-  onSubmit() {
-    console.log(this.state.username, this.state.password);
+  onSubmit(event) {
+    const { username, password } = this.state;
+
+    setTimeout(() => {
+      if (username.toLowerCase() === "admin" && password === "1234") {
+        this.context.logIn();
+        this.context.setUsername(username);
+        this.props.history.push("/profile");
+      }
+    }, 1000);
+    event.preventDefault();
   }
   render() {
     return (
@@ -36,10 +46,13 @@ class Login extends React.Component {
             value={this.state.password}
             onChange={this.onChange}
           />
+          <button type="submit">Submit</button>
         </form>
       </div>
     );
   }
 }
+
+Login.contextType = LoginContext;
 
 export default Login;
