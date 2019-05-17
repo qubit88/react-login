@@ -1,12 +1,18 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from "react-router-dom";
 import Profile from "./Profile";
 import News from "./News";
 import Home from "./Home";
 import Login from "./Login";
 import LoginContext from "./LoginContext";
 import Navigation from "./Navigation";
+import NoMatch from "./NoMatch";
 
 class App extends React.Component {
   constructor(props) {
@@ -63,15 +69,18 @@ class App extends React.Component {
           >
             <Navigation />
             <div>
-              <Route path="/" exact component={Home} />
-              <Route path="/news" component={News} />
-              <Route path="/login" component={Login} />
-              <Route
-                path="/profile/"
-                render={() =>
-                  this.state.loggedIn ? <Profile /> : <Redirect to="/login" />
-                }
-              />
+              <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/news" component={News} />
+                <Route path="/login" component={Login} />
+                <Route
+                  path="/profile/"
+                  render={() =>
+                    this.state.loggedIn ? <Profile /> : <Redirect to="/login" />
+                  }
+                />
+                <Route component={NoMatch} />
+              </Switch>
             </div>
           </LoginContext.Provider>
         </Router>
