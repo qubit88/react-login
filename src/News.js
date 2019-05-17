@@ -21,7 +21,7 @@ class News extends React.Component {
         ],
         isLoading: false
       });
-    });
+    }, 2000);
   }
 
   render() {
