@@ -53,8 +53,6 @@ class App extends React.Component {
   componentDidMount() {
     const loggedIn = JSON.parse(localStorage.getItem("loggedIn"));
     const username = localStorage.getItem("username") || "";
-    // console.log(localStorage.getItem("username"), "username");
-    // const username = "";
 
     this.setState({ loggedIn, username });
   }
@@ -63,7 +61,7 @@ class App extends React.Component {
     const { loggedIn, logIn, logOut, username, setUsername } = this.state;
     return (
       <div className="App">
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <LoginContext.Provider
             value={{ loggedIn, logIn, logOut, username, setUsername }}
           >
