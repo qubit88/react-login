@@ -61,7 +61,7 @@ class App extends React.Component {
     const { loggedIn, logIn, logOut, username, setUsername } = this.state;
     return (
       <div className="App">
-        <Router basename={process.env.PUBLIC_URL}>
+        <Router>
           <LoginContext.Provider
             value={{ loggedIn, logIn, logOut, username, setUsername }}
           >
